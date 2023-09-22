@@ -41,8 +41,9 @@ func Example() {
         log.Fatal(err)
     }
 
-    // AND filter.  Get tasks that have priority A and are not completed.
+    // AND filter.  Get tasks that have any priority AND are not completed.
     nearTopTasks := tasks.Filter(todo.FilterHasPriority).Filter(todo.FilterNotCompleted)
+    // OR filter. Filter the above tasks with p
 
     fmt.Println(nearTopTasks.String())
 

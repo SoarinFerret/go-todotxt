@@ -11,6 +11,11 @@ FROM golang:${VARIANT}
 
 RUN apk add --no-cache gcc musl-dev
 
+COPY ./go.mod /workspaces/go.mod
+COPY ./go.sum /workspaces/go.sum
+
 WORKDIR /workspaces
+
+RUN go mod download
 
 ENTRYPOINT go mod download && go test -race ./...
