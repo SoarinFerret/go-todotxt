@@ -59,7 +59,7 @@ func ParseTask(text string) (*Task, error) {
 	task.Original = oriText
 	task.Todo = oriText
 
-	// Check for completed
+	// Check for completed (has 'x ' at the beginning)
 	if completedRx.MatchString(oriText) {
 		if err := parseCompleted(oriText, task); err != nil {
 			return nil, errors.Wrap(err, "failed to parse task")

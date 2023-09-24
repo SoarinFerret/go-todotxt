@@ -1,5 +1,5 @@
-//go:build !windows
-// +build !windows
+//go:build windows
+// +build windows
 
 package todo_test
 
@@ -25,9 +25,9 @@ func ExampleTaskList_String() {
 		log.Fatal(err)
 	}
 
-	// Note that the end of line character is '\n'. It differs from OS to OS.
+	// Note that the end of line character is '\r\n'. It differs from OS to OS.
 	// '\n' for Unix-like OS and '\r\n' for Windows.
 	fmt.Printf("%#v", tasks.String())
 	// Output:
-	// "(A) Call Mom @Phone +Family\n(A) Schedule annual checkup +Health\n(B) Outline chapter 5 @Computer +Novel\n(C) Add cover sheets @Office +TPSReports\nPlan backyard herb garden @Home\nPick up milk @GroceryStore\nResearch self-publishing services @Computer +Novel\nx Download Todo.txt mobile app @Phone\n"
+	// "(A) Call Mom @Phone +Family\r\n(A) Schedule annual checkup +Health\r\n(B) Outline chapter 5 @Computer +Novel\r\n(C) Add cover sheets @Office +TPSReports\r\nPlan backyard herb garden @Home\r\nPick up milk @GroceryStore\r\nResearch self-publishing services @Computer +Novel\r\nx Download Todo.txt mobile app @Phone\r\n"
 }

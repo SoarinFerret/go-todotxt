@@ -1,6 +1,6 @@
 /*
-Package todo parses and manipulates tasks and to-do lists in todo.txt format
-by Gina Trapani.
+Package todo provides a library for parsing and manipulating tasks and to-do
+lists in todo.txt format.
 */
 package todo
 
