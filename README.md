@@ -26,27 +26,57 @@ import "github.com/KEINOS/go-todotxt/todo"
 
 ```go
 func Example() {
-    // Load tasks from a string. You can also load from a file by using LoadFromFile().
+    // Load tasks from a string.
+    // You can also load from a file by using LoadFromFile().
     tasks, err := todo.LoadFromString(`
         (A) Call Mom @Phone +Family
         x (A) Schedule annual checkup +Health
-        (B) Outline chapter 5 +Novel @Computer
         (C) Add cover sheets @Office +TPSReports
         Plan backyard herb garden @Home
         Pick up milk @GroceryStore
         Research self-publishing services +Novel @Computer
         x Download Todo.txt mobile app @Phone
+        (A) This is a task should be due before yesterday due:2020-11-15
     `)
     if err != nil {
         log.Fatal(err)
     }
 
-    // AND filter.  Get tasks that have any priority AND are not completed.
-    nearTopTasks := tasks.Filter(todo.FilterHasPriority).Filter(todo.FilterNotCompleted)
-    // OR filter. Filter the above tasks with p
+    // Add a new task.
+    // Note the order of project ("+Novel") and context ("@Computer") later
+    // in the output.
+    newTask, err := todo.ParseTask("(B) Outline chapter 5 +Novel @Computer")
+    if err != nil {
+        log.Fatal(err)
+    }
 
-    fmt.Println(nearTopTasks.String())
+    tasks.AddTask(newTask) // append to the end of the list
 
+    // Sort tasks by priority and then by context in ascending order.
+    if err := tasks.Sort(todo.SortPriorityAsc, todo.SortContextAsc); err != nil {
+        log.Fatal(err)
+    }
+
+    // AND filter.
+    // Get tasks that have any priority AND are not completed AND are not overdue.
+    filteredTasks := tasks.
+        Filter(todo.FilterHasPriority).
+        Filter(todo.FilterNotCompleted).
+        Filter(todo.FilterNot(todo.FilterOverdue)) // NOT overdue
+
+    // OR filter.
+    // Filter the above tasks with priority "A" OR has project "Novel" OR has
+    // context "Office".
+    filteredTasks = filteredTasks.Filter(
+        todo.FilterByPriority("A"),     // has (A)
+        todo.FilterByProject("Novel"),  // has +Novel
+        todo.FilterByContext("Office"), // has @Office
+    )
+
+    // Print the filtered tasks.
+    for _, task := range filteredTasks {
+        fmt.Println(task.String())
+    }
     // Output:
     // (A) Call Mom @Phone +Family
     // (B) Outline chapter 5 @Computer +Novel
