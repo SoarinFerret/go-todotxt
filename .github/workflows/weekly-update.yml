@@ -33,7 +33,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Update go.mod and go.sum on Go 1.18 env and run unit tests
+      - name: Update go.mod and go.sum on minimum supported Go env and run unit tests
         run: |
           make update_mod
 

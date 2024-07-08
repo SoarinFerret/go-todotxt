@@ -1,11 +1,10 @@
 SHELL=bash
 
-test: test_118 test_119 test_latest lint
+test: test_min test_latest lint
 
 test_pull:
 	@docker pull alpine:latest
-	@docker pull golang:1.18-alpine
-	@docker pull golang:1.19-alpine
+	@docker pull golang:1.22-alpine
 	@docker pull golang:alpine
 	@docker pull golangci/golangci-lint:latest
 	docker compose --file ./.github/docker-compose.yml pull
@@ -13,12 +12,9 @@ test_pull:
 test_build: test_pull
 	docker compose --file ./.github/docker-compose.yml build --no-cache
 
-test_118:
-	@echo -n "* Running unit test on go 1.18 ... "
-	@docker compose --file ./.github/docker-compose.yml run --rm v1_18
-test_119:
-	@echo -n "* Running unit test on go 1.19 ... "
-	@docker compose --file ./.github/docker-compose.yml run --rm v1_19
+test_min:
+	@echo -n "* Running unit test on go 1.22 ... "
+	@docker compose --file ./.github/docker-compose.yml run --rm min
 test_latest:
 	@echo -n "* Running unit test on latest go ... "
 	@docker compose --file ./.github/docker-compose.yml run --rm latest

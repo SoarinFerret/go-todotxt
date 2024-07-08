@@ -25,8 +25,6 @@
 # module version, during it's process the "go.mod" file will be gone temporarily.
 # Thus, `docker compose up` will cause failure in the other container because of
 # missing "go.mod" file.
-version: "3.9"
-
 volumes:
   GO_PKG_MOD:
 
@@ -37,7 +35,7 @@ services:
       context: ..
       dockerfile: ./.github/Dockerfile
       args:
-        VARIANT: 1.18-alpine
+        VARIANT: 1.22-alpine
     volumes:
       - ..:/workspaces
     entrypoint: [ "./.github/run_go_mod_tidy.sh" ]
@@ -47,7 +45,7 @@ services:
       context: ..
       dockerfile: ./.github/Dockerfile
       args:
-        VARIANT: 1.18-alpine
+        VARIANT: 1.22-alpine
     volumes:
       - ..:/workspaces
     entrypoint: [ "./.github/run_go_generate.sh" ]
@@ -59,23 +57,13 @@ services:
       - ..:/workspaces
       - GO_PKG_MOD:/go/pkg/mod
     entrypoint: [ "/usr/bin/golangci-lint", "run" ]
-  # Service v1_18 runs the tests on Go v1.18
-  v1_18:
+  # Service min runs the tests on minimum supported Go version
+  min:
     build:
       context: ..
       dockerfile: ./.github/Dockerfile
       args:
-        VARIANT: 1.18-alpine
-    volumes:
-      - ..:/workspaces
-      - GO_PKG_MOD:/go/pkg/mod
-  # Service v1_19 runs the tests on Go v1.19
-  v1_19:
-    build:
-      context: ..
-      dockerfile: ./.github/Dockerfile
-      args:
-        VARIANT: 1.19-alpine
+        VARIANT: 1.22-alpine
     volumes:
       - ..:/workspaces
       - GO_PKG_MOD:/go/pkg/mod

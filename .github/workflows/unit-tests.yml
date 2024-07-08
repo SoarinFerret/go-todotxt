@@ -1,4 +1,4 @@
-# Unit testing on vaious Go versions, such as Go 1.18 and later.
+# Unit testing on vaious Go versions, such as Go 1.22 and later.
 # It will test the generated password hash verifying with PHP and Python.
 #
 # This workflow caches images built with Docker and docker-compose to speed up its execution.
@@ -45,8 +45,7 @@ jobs:
       - name: Load cached Docker images if any
         if: steps.cache.outputs.cache-hit == 'true'
         run: |
-          docker load --input ${{ env.PATH_CACHE }}/${{ steps.imagetag.outputs.hash }}/github-v1_18.tar
-          docker load --input ${{ env.PATH_CACHE }}/${{ steps.imagetag.outputs.hash }}/github-v1_19.tar
+          docker load --input ${{ env.PATH_CACHE }}/${{ steps.imagetag.outputs.hash }}/github-min.tar
           docker load --input ${{ env.PATH_CACHE }}/${{ steps.imagetag.outputs.hash }}/github-latest.tar
 
       - name: Pull base images if no-cache
@@ -72,6 +71,5 @@ jobs:
           docker image ls
           echo '--------'
           mkdir -p ${{ env.PATH_CACHE }}/${{ steps.imagetag.outputs.hash }}
-          docker save --output "${{ env.PATH_CACHE }}/${{ steps.imagetag.outputs.hash }}/github-v1_18.tar" "github-v1_18:latest"
-          docker save --output "${{ env.PATH_CACHE }}/${{ steps.imagetag.outputs.hash }}/github-v1_19.tar" "github-v1_19:latest"
+          docker save --output "${{ env.PATH_CACHE }}/${{ steps.imagetag.outputs.hash }}/github-min.tar" "github-min:latest"
           docker save --output "${{ env.PATH_CACHE }}/${{ steps.imagetag.outputs.hash }}/github-latest.tar" "github-latest:latest"

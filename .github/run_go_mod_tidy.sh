@@ -19,7 +19,7 @@ cp go.sum go.sum.bak
 
 echo '* Run go tidy ...'
 go get -u ./...
-go mod tidy -go=1.18
+go mod tidy -go=1.22
 
 echo "* Run tests (on $(go version)) ..."
 go test ./... && {
