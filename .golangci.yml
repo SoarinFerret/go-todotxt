@@ -1,37 +1,36 @@
 run:
   tests: true
-  fast: true
   build-tags:
     - golangci
-  skip-dirs:
-    - .github
-    - .vscode
   allow-parallel-runners: true
 
+issues:
+  exclude-dirs:
+    - .github
+    - .vscode
+
 output:
-  format: colored-line-number
   sort-results: true
 
 linters:
   # Enable all the linters except the ones disabled below
   enable-all: true
   disable:
+  # Remove dur to deprecated and deactivated
+  # - golint
+  # - interfacer
+  # - ifshort
+  # - scopelint
+  # - exhaustivestruct
+  # - maligned
+  # - nosnakecase
+  # - varcheck
+  # - deadcode
+  # - structcheck
   # Disable deprecated/abandoned linters
-  - golint
-  - interfacer
-  - ifshort
-  - scopelint
-  - exhaustivestruct
-  - maligned
-  - nosnakecase
-  - varcheck
-  - deadcode
-  # Disabled because of generics
-  - contextcheck
-  - rowserrcheck
-  - sqlclosecheck
-  - structcheck
-  - wastedassign
+  - execinquery
+  # Disabled due to renaming
+  - gomnd
   # Disable due to test and mock private functions
   - testpackage
 
