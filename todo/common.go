@@ -147,7 +147,7 @@ func lessStrings(a, b []string) bool {
 		lenMin = lenB
 	}
 
-	for i := 0; i < lenMin; i++ {
+	for i := range lenMin {
 		if a[i] < b[i] {
 			return true
 		}

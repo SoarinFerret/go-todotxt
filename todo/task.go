@@ -215,7 +215,7 @@ func (task Task) String() string {
 		strBld.WriteString("x ")
 
 		if task.HasCompletedDate() {
-			strBld.WriteString(fmt.Sprintf("%s ", task.CompletedDate.Format(DateLayout)))
+			strBld.WriteString(task.CompletedDate.Format(DateLayout) + " ")
 		}
 	}
 
@@ -224,7 +224,7 @@ func (task Task) String() string {
 	}
 
 	if task.HasCreatedDate() {
-		strBld.WriteString(fmt.Sprintf("%s ", task.CreatedDate.Format(DateLayout)))
+		strBld.WriteString(task.CreatedDate.Format(DateLayout) + " ")
 	}
 
 	strBld.WriteString(task.Todo)
@@ -233,7 +233,7 @@ func (task Task) String() string {
 		sort.Strings(task.Contexts)
 
 		for _, context := range task.Contexts {
-			strBld.WriteString(fmt.Sprintf(" @%s", context))
+			strBld.WriteString(" @" + context)
 		}
 	}
 
@@ -241,7 +241,7 @@ func (task Task) String() string {
 		sort.Strings(task.Projects)
 
 		for _, project := range task.Projects {
-			strBld.WriteString(fmt.Sprintf(" +%s", project))
+			strBld.WriteString(" +" + project)
 		}
 	}
 
@@ -261,7 +261,7 @@ func (task Task) String() string {
 	}
 
 	if task.HasDueDate() {
-		strBld.WriteString(fmt.Sprintf(" due:%s", task.DueDate.Format(DateLayout)))
+		strBld.WriteString(" due:" + task.DueDate.Format(DateLayout))
 	}
 
 	return strBld.String()

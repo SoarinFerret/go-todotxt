@@ -1,7 +1,6 @@
 package todo
 
 import (
-	"fmt"
 	"testing"
 	"time"
 
@@ -375,10 +374,10 @@ func TestTask_DueDate(t *testing.T) {
 
 	// Yesterdays task
 	{
-		task, err := ParseTask(fmt.Sprintf(
-			"Hello Yesterday Task due:%s", time.Now().AddDate(0, 0, -1).Format(DateLayout)))
-		require.NoError(t, err, "failed to parse task during testing")
+		task, err := ParseTask("Hello Yesterday Task due:" + time.Now().AddDate(0, 0, -1).Format(DateLayout))
 
+		require.NoError(t, err,
+			"failed to parse task during testing")
 		require.Less(t, task.Due(), time.Duration(0),
 			"on overdue the duration time should be netagive: %s", task.String())
 		require.True(t, task.IsOverdue(),
@@ -389,9 +388,10 @@ func TestTask_DueDate(t *testing.T) {
 
 	// Do it right now
 	{
-		task, err := ParseTask(fmt.Sprintf("Hello Today Task due:%s", time.Now().Format(DateLayout)))
-		require.NoError(t, err, "failed to parse task during testing")
+		task, err := ParseTask("Hello Today Task due:" + time.Now().Format(DateLayout))
 
+		require.NoError(t, err,
+			"failed to parse task during testing")
 		require.Less(t, task.Due(), 24*time.Hour,
 			"on due today tasks duration time should not be greater than one day: %s", task.String())
 		require.False(t, task.IsOverdue(),
@@ -402,9 +402,10 @@ func TestTask_DueDate(t *testing.T) {
 
 	// Hasta mañana. Will do tomorrow
 	{
-		task, err := ParseTask(fmt.Sprintf("Hello Tomorrow Task due:%s", time.Now().AddDate(0, 0, 1).Format(DateLayout)))
-		require.NoError(t, err, "failed to parse task during testing")
+		task, err := ParseTask("Hello Tomorrow Task due:" + time.Now().AddDate(0, 0, 1).Format(DateLayout))
 
+		require.NoError(t, err,
+			"failed to parse task during testing")
 		require.Greater(t, task.Due(), 24*time.Hour,
 			"on due tomorrow tasks duration time should be greater than one day: %s", task.String())
 		require.LessOrEqual(t, task.Due(), 48*time.Hour,
@@ -645,7 +646,7 @@ func TestTask_Complete(t *testing.T) {
 	taskID := 44
 
 	// first 4 tasks should all match the same tests (which are not completed tasks)
-	for i := 0; i < 4; i++ {
+	for range 4 {
 		tmpTask := testTasklist[taskID-1]
 
 		require.False(t, tmpTask.Completed,
@@ -702,7 +703,7 @@ func TestTask_Reopen(t *testing.T) {
 	taskID := 49
 
 	// the first 2 tasks should match the same tests (completed flag but with no completed date)
-	for i := 0; i < 2; i++ {
+	for range 2 {
 		tmpTask := testTasklist[taskID-1]
 
 		require.True(t, tmpTask.Completed,
@@ -721,7 +722,7 @@ func TestTask_Reopen(t *testing.T) {
 	}
 
 	// the next 3 tasks should all match the same tests (completed flag with completed date)
-	for i := 0; i < 3; i++ {
+	for range 3 {
 		tmpTask := testTasklist[taskID-1]
 
 		require.True(t, tmpTask.Completed,

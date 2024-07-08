@@ -33,7 +33,7 @@ func Test_rule1(t *testing.T) {
 
 			filteredTasks := tasks.Filter(todo.FilterHasPriority)
 
-			require.Equal(t, 1, len(filteredTasks),
+			require.Len(t, filteredTasks, 1,
 				"this task should be treated as having priority")
 			assert.Equal(t, "(A) Call Mom", filteredTasks[0].String(),
 				"the task shoulbe be the same as the original")

@@ -49,7 +49,7 @@ func (task *Task) Segments() []*TaskSegment {
 		sort.Strings(task.Contexts)
 
 		for _, context := range task.Contexts {
-			segs = append(segs, newTaskSeg(SegmentContext, context, fmt.Sprintf("@%s", context)))
+			segs = append(segs, newTaskSeg(SegmentContext, context, "@"+context))
 		}
 	}
 
@@ -57,7 +57,7 @@ func (task *Task) Segments() []*TaskSegment {
 		sort.Strings(task.Projects)
 
 		for _, project := range task.Projects {
-			segs = append(segs, newTaskSeg(SegmentProject, project, fmt.Sprintf("+%s", project)))
+			segs = append(segs, newTaskSeg(SegmentProject, project, "+"+project))
 		}
 	}
 
@@ -83,7 +83,7 @@ func (task *Task) Segments() []*TaskSegment {
 	}
 
 	if task.HasDueDate() {
-		segs = append(segs, newBasicTaskSeg(SegmentDueDate, fmt.Sprintf("due:%s", task.DueDate.Format(DateLayout))))
+		segs = append(segs, newBasicTaskSeg(SegmentDueDate, "due:"+task.DueDate.Format(DateLayout)))
 	}
 
 	return segs
