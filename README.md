@@ -84,6 +84,38 @@ func Example() {
 }
 ```
 
+```go
+func ExampleTaskList_CustomSort() {
+    tasks, err := todo.LoadFromString(`
+        Task 3
+        Task 1
+        Task 4
+        Task 2
+    `)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // customFunc returns true if taskA is less than taskB.
+    customFunc := func(taskA, taskB todo.Task) bool {
+        // Compare strings of the text part of the task.
+        return taskA.Todo < taskB.Todo
+    }
+
+    tasks.CustomSort(customFunc)
+
+    fmt.Println(tasks[0].Todo)
+    fmt.Println(tasks[1].Todo)
+    fmt.Println(tasks[2].Todo)
+    fmt.Println(tasks[3].Todo)
+    // Output:
+    // Task 1
+    // Task 2
+    // Task 3
+    // Task 4
+}
+```
+
 ## Todo.txt format
 
 ![](https://raw.githubusercontent.com/todotxt/todo.txt/master/description.svg)
