@@ -23,7 +23,7 @@ import (
 // For the "todo.txt" format specification see:
 // https://github.com/todotxt/todo.txt#todotxt-format-rules
 //
-//nolint:godox // The todo in the comment below is not a TODO.
+//nolint:godox,recvcheck // False positive TODO in the comment. Stringer requires non-pointer receiver for String()
 type Task struct {
 	DueDate        time.Time         // DueDate is the due date calculated from the 'due:' tag.
 	CompletedDate  time.Time         // CompletedDate is the date the task was completed.

@@ -15,6 +15,8 @@ import (
 
 // TaskList represents a list of todo.txt task entries.
 // It is usually loaded from a whole todo.txt file.
+//
+//nolint:recvcheck // The method Filter uses non-pointer receiver so it is mixed
 type TaskList []Task
 
 // ----------------------------------------------------------------------------
@@ -78,8 +80,8 @@ func (tasklist *TaskList) AddTask(task *Task) {
 }
 
 // Count returns the number of tasks in the TaskList.
-func (tasklist TaskList) Count() int {
-	return len(tasklist)
+func (tasklist *TaskList) Count() int {
+	return len(*tasklist)
 }
 
 /* TaskList.Filter() has been moved to tasklist_filter.go */
@@ -199,10 +201,10 @@ func (tasklist *TaskList) RemoveTaskByID(taskID int) error {
 /* TaskList.Sort() has been moved to tasklist_sort.go */
 
 // String returns a complete list of tasks in todo.txt format.
-func (tasklist TaskList) String() string {
+func (tasklist *TaskList) String() string {
 	var strBldr strings.Builder
 
-	for _, task := range tasklist {
+	for _, task := range *tasklist {
 		strBldr.WriteString(task.String())
 		strBldr.WriteString(NewLine)
 	}

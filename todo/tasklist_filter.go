@@ -12,7 +12,7 @@ func (tasklist TaskList) Filter(filter Predicate, filters ...Predicate) TaskList
 	combined := []Predicate{filter}
 	combined = append(combined, filters...)
 
-	var newList TaskList
+	newList := []Task{}
 
 	for _, task := range tasklist {
 		for _, filt := range combined {
@@ -25,5 +25,5 @@ func (tasklist TaskList) Filter(filter Predicate, filters ...Predicate) TaskList
 		}
 	}
 
-	return newList
+	return TaskList(newList)
 }
