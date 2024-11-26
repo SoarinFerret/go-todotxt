@@ -16,7 +16,7 @@ linters:
   # Enable all the linters except the ones disabled below
   enable-all: true
   disable:
-  # Remove dur to deprecated and deactivated
+  # Remove deprecated and deactivated linters
   # - golint
   # - interfacer
   # - ifshort
@@ -27,24 +27,12 @@ linters:
   # - varcheck
   # - deadcode
   # - structcheck
+  # - gomnd
+  # - execinquery
+  #
   # Disable deprecated/abandoned linters
-  - execinquery
-  # Disabled due to renaming
-  - gomnd
+  - exportloopref
   # Disable due to test and mock private functions
   - testpackage
-
-linters-settings:
-  depguard:
-    rules:
-      main:
-        # List of allowed packages.
-        allow:
-          # Standard library
-          - $gostd
-          # Required for testing
-          - github.com/stretchr/testify
-          # Required for real examples
-          - github.com/KEINOS/go-todotxt/todo
-          # Deprecated but still used
-          - github.com/pkg/errors
+  # Disable due to the use of external dependencies
+  - depguard
