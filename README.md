@@ -79,7 +79,7 @@ func Example() {
     }
     // Output:
     // (A) Call Mom @Phone +Family
-    // (B) Outline chapter 5 @Computer +Novel
+    // (B) Outline chapter 5 +Novel @Computer
     // (C) Add cover sheets @Office +TPSReports
 }
 ```

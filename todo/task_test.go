@@ -92,7 +92,7 @@ func Test_ParseTask(t *testing.T) {
 	/* Method tests */
 
 	// Task()
-	expectStr := "x (C) 2014-01-01 Create golang library documentation not::tag @Go +go-todotxt hello:world due:2014-01-12"
+	expectStr := "x (C) 2014-01-01 @Go Create golang library documentation +go-todotxt not::tag hello:world due:2014-01-12"
 	actualStr := task.Task()
 	require.Equal(t, expectStr, actualStr, "method Task failed to return expected string")
 
@@ -109,7 +109,7 @@ func Test_ParseTask(t *testing.T) {
 
 	//nolint:godox // the below is not a comment as a TODO
 	// Todo
-	expectTask := "Create golang library documentation not::tag"
+	expectTask := "@Go Create golang library documentation +go-todotxt not::tag"
 	actualTask := task.Todo
 	require.Equal(t, expectTask, actualTask, "field Todo failed to return expected string")
 
@@ -771,7 +771,7 @@ func TestTask_String(t *testing.T) {
 	}{
 		{taskID: 1, expectStr: "2013-02-22 Pick up milk @GroceryStore"},
 		{taskID: 2, expectStr: "x Download Todo.txt mobile app @Phone"},
-		{taskID: 3, expectStr: "(B) 2013-12-01 Outline chapter 5 @Computer +Novel Level:5 private:false due:2014-02-17"},
+		{taskID: 3, expectStr: "(B) 2013-12-01 Outline chapter 5 +Novel @Computer Level:5 private:false due:2014-02-17"},
 		{taskID: 4, expectStr: "x 2014-01-02 (B) 2013-12-30 Create golang library test cases @Go +go-todotxt"},
 		{taskID: 5, expectStr: "x 2014-01-03 2014-01-01 Create some more golang library test cases @Go +go-todotxt"},
 	} {

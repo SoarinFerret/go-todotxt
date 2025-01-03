@@ -250,7 +250,7 @@ func TestTaskList_GetTask(t *testing.T) {
 		require.Equal(t, expectID, actualID, "the ID filed and the index of the task in the tasklist do not match")
 	}
 	{
-		expectStr := "(B) 2013-12-01 Outline chapter 5 @Computer +Novel Level:5 private:false due:2014-02-17"
+		expectStr := "(B) 2013-12-01 Outline chapter 5 +Novel @Computer Level:5 private:false due:2014-02-17"
 		require.Equal(t, expectStr, actualStr, "the GetTask() method returned an unexpected task")
 	}
 }
@@ -267,7 +267,7 @@ func TestTaskList_update_task(t *testing.T) {
 
 	{
 		// Assert task contents be ok before update
-		expectStr := "(B) 2013-12-01 Outline chapter 5 @Computer +Novel Level:5 private:false due:2014-02-17"
+		expectStr := "(B) 2013-12-01 Outline chapter 5 +Novel @Computer Level:5 private:false due:2014-02-17"
 		actualStr := task.String()
 		require.Equal(t, expectStr, actualStr, "task.String() did not return expected value. Task ID: %d", taskID)
 

@@ -81,13 +81,13 @@ func ParseTask(text string) (*Task, error) {
 	// Check for contexts
 	if contextRx.MatchString(oriText) {
 		task.Contexts = getSlice(oriText, contextRx)
-		task.Todo = contextRx.ReplaceAllString(task.Todo, emptyStr) // Remove from Todo text
+		//task.Todo = contextRx.ReplaceAllString(task.Todo, emptyStr) // Remove from Todo text
 	}
 
 	// Check for projects
 	if projectRx.MatchString(oriText) {
 		task.Projects = getSlice(oriText, projectRx)
-		task.Todo = projectRx.ReplaceAllString(task.Todo, emptyStr) // Remove from Todo text
+		//task.Todo = projectRx.ReplaceAllString(task.Todo, emptyStr) // Remove from Todo text
 	}
 
 	// Check for additional tags
@@ -233,7 +233,10 @@ func (task Task) String() string {
 		sort.Strings(task.Contexts)
 
 		for _, context := range task.Contexts {
-			strBld.WriteString(" @" + context)
+			// check if context is already in the task text
+			if !strings.Contains(task.Todo, "@"+context) {
+				strBld.WriteString(" @" + context)
+			}
 		}
 	}
 
@@ -241,7 +244,10 @@ func (task Task) String() string {
 		sort.Strings(task.Projects)
 
 		for _, project := range task.Projects {
-			strBld.WriteString(" +" + project)
+			// check if project is already in the task text
+			if !strings.Contains(task.Todo, "+"+project) {
+				strBld.WriteString(" +" + project)
+			}
 		}
 	}
 

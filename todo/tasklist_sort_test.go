@@ -52,10 +52,10 @@ func TestTaskList_Sort_sort_by_priority(t *testing.T) {
 		require.NoError(t, actualTasklist.Sort(SortPriorityAsc), "sorting by SortPriorityAsc failed")
 
 		expectTasklist := []string{
-			"(A) 2012-01-30 Call Mom @Call @Phone +Family",
+			"(A) 2012-01-30 @Phone Call Mom @Call +Family",
 			"x 2014-01-02 (B) 2013-12-30 Create golang library test cases @Go +go-todotxt",
 			"x (C) 2014-01-01 Create golang library documentation @Go +go-todotxt due:2014-01-12",
-			"(D) 2013-12-01 Outline chapter 5 @Computer +Novel Level:5 private:false due:2014-02-17",
+			"(D) 2013-12-01 Outline chapter 5 +Novel @Computer Level:5 private:false due:2014-02-17",
 			"2013-02-22 Pick up milk @GroceryStore",
 			"x 2014-01-03 Create golang library @Go +go-todotxt due:2014-01-05",
 		}
@@ -69,10 +69,10 @@ func TestTaskList_Sort_sort_by_priority(t *testing.T) {
 		expectTasklist := []string{
 			"x 2014-01-03 Create golang library @Go +go-todotxt due:2014-01-05",
 			"2013-02-22 Pick up milk @GroceryStore",
-			"(D) 2013-12-01 Outline chapter 5 @Computer +Novel Level:5 private:false due:2014-02-17",
+			"(D) 2013-12-01 Outline chapter 5 +Novel @Computer Level:5 private:false due:2014-02-17",
 			"x (C) 2014-01-01 Create golang library documentation @Go +go-todotxt due:2014-01-12",
 			"x 2014-01-02 (B) 2013-12-30 Create golang library test cases @Go +go-todotxt",
-			"(A) 2012-01-30 Call Mom @Call @Phone +Family",
+			"(A) 2012-01-30 @Phone Call Mom @Call +Family",
 		}
 		checkTaskListOrder(t, actualTasklist, expectTasklist)
 	}
@@ -95,7 +95,7 @@ func TestTaskList_Sort_sort_by_created_date(t *testing.T) {
 
 		expectTasklist := []string{
 			"x 2014-01-03 Create golang library @Go +go-todotxt due:2014-01-05",
-			"(A) Call Mom @Call @Phone +Family",
+			"(A) @Phone Call Mom @Call +Family",
 			"2013-02-22 Pick up milk @GroceryStore",
 			"x 2014-01-02 (B) 2013-12-30 Create golang library test cases @Go +go-todotxt",
 			"x (C) 2014-01-01 Create golang library documentation @Go +go-todotxt due:2014-01-12",
@@ -111,7 +111,7 @@ func TestTaskList_Sort_sort_by_created_date(t *testing.T) {
 			"x (C) 2014-01-01 Create golang library documentation @Go +go-todotxt due:2014-01-12",
 			"x 2014-01-02 (B) 2013-12-30 Create golang library test cases @Go +go-todotxt",
 			"2013-02-22 Pick up milk @GroceryStore",
-			"(A) Call Mom @Call @Phone +Family",
+			"(A) @Phone Call Mom @Call +Family",
 			"x 2014-01-03 Create golang library @Go +go-todotxt due:2014-01-05",
 		}
 		checkTaskListOrder(t, actualTasklist, expectTasklist)
@@ -178,7 +178,7 @@ func TestTaskList_Sort_sort_by_due_date(t *testing.T) {
 			"x 2014-01-02 (B) 2013-12-30 Create golang library test cases @Go +go-todotxt",
 			"x 2014-01-03 Create golang library @Go +go-todotxt due:2014-01-05",
 			"x (C) 2014-01-01 Create golang library documentation @Go +go-todotxt due:2014-01-12",
-			"(B) 2013-12-01 Outline chapter 5 @Computer +Novel Level:5 private:false due:2014-02-17",
+			"(B) 2013-12-01 Outline chapter 5 +Novel @Computer Level:5 private:false due:2014-02-17",
 		}
 		checkTaskListOrder(t, actualTasklist, expectTasklist)
 	}
@@ -188,7 +188,7 @@ func TestTaskList_Sort_sort_by_due_date(t *testing.T) {
 		require.NoError(t, actualTasklist.Sort(SortDueDateDesc), "sorting by SortDueDateDesc failed")
 
 		expectTasklist := []string{
-			"(B) 2013-12-01 Outline chapter 5 @Computer +Novel Level:5 private:false due:2014-02-17",
+			"(B) 2013-12-01 Outline chapter 5 +Novel @Computer Level:5 private:false due:2014-02-17",
 			"x (C) 2014-01-01 Create golang library documentation @Go +go-todotxt due:2014-01-12",
 			"x 2014-01-03 Create golang library @Go +go-todotxt due:2014-01-05",
 			"x 2014-01-02 (B) 2013-12-30 Create golang library test cases @Go +go-todotxt",

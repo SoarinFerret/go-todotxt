@@ -23,8 +23,8 @@ var testCasesTaskSegment = []struct {
 			},
 			{
 				Type:      SegmentTodoText,
-				Originals: []string{"Pick up milk"},
-				Display:   "Pick up milk",
+				Originals: []string{"Pick up milk @GroceryStore"},
+				Display:   "Pick up milk @GroceryStore",
 			},
 			{
 				Type:      SegmentContext,
@@ -43,8 +43,8 @@ var testCasesTaskSegment = []struct {
 			},
 			{
 				Type:      SegmentTodoText,
-				Originals: []string{"Download Todo.txt mobile app"},
-				Display:   "Download Todo.txt mobile app",
+				Originals: []string{"Download Todo.txt mobile app @Phone"},
+				Display:   "Download Todo.txt mobile app @Phone",
 			},
 			{
 				Type:      SegmentContext,
@@ -54,7 +54,7 @@ var testCasesTaskSegment = []struct {
 		},
 	},
 	{
-		text: "(B) 2013-12-01 Outline chapter 5 @Computer +Novel Level:5 private:false due:2014-02-17",
+		text: "(B) 2013-12-01 Outline chapter 5 +Novel @Computer Level:5 private:false due:2014-02-17",
 		segs: []*TaskSegment{
 			{
 				Type:      SegmentPriority,
@@ -68,8 +68,8 @@ var testCasesTaskSegment = []struct {
 			},
 			{
 				Type:      SegmentTodoText,
-				Originals: []string{"Outline chapter 5"},
-				Display:   "Outline chapter 5",
+				Originals: []string{"Outline chapter 5 +Novel @Computer"},
+				Display:   "Outline chapter 5 +Novel @Computer",
 			},
 			{
 				Type:      SegmentContext,
@@ -123,8 +123,8 @@ var testCasesTaskSegment = []struct {
 			},
 			{
 				Type:      SegmentTodoText,
-				Originals: []string{"Create golang library test cases"},
-				Display:   "Create golang library test cases",
+				Originals: []string{"Create golang library test cases @Go +go-todotxt"},
+				Display:   "Create golang library test cases @Go +go-todotxt",
 			},
 			{
 				Type:      SegmentContext,
@@ -158,8 +158,8 @@ var testCasesTaskSegment = []struct {
 			},
 			{
 				Type:      SegmentTodoText,
-				Originals: []string{"Create some more golang library test cases"},
-				Display:   "Create some more golang library test cases",
+				Originals: []string{"Create some more golang library test cases @Go +go-todotxt"},
+				Display:   "Create some more golang library test cases @Go +go-todotxt",
 			},
 			{
 				Type:      SegmentContext,

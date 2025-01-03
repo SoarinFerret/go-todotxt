@@ -29,5 +29,5 @@ func ExampleTaskList_String() {
 	// '\n' for Unix-like OS and '\r\n' for Windows.
 	fmt.Printf("%#v", tasks.String())
 	// Output:
-	// "(A) Call Mom @Phone +Family\n(A) Schedule annual checkup +Health\n(B) Outline chapter 5 @Computer +Novel\n(C) Add cover sheets @Office +TPSReports\nPlan backyard herb garden @Home\nPick up milk @GroceryStore\nResearch self-publishing services @Computer +Novel\nx Download Todo.txt mobile app @Phone\n"
+	// "(A) Call Mom @Phone +Family\n(A) Schedule annual checkup +Health\n(B) Outline chapter 5 +Novel @Computer\n(C) Add cover sheets @Office +TPSReports\nPlan backyard herb garden @Home\nPick up milk @GroceryStore\nResearch self-publishing services +Novel @Computer\nx Download Todo.txt mobile app @Phone\n"
 }

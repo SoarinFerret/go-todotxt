@@ -65,7 +65,7 @@ func Example() {
 	}
 	// Output:
 	// (A) Call Mom @Phone +Family
-	// (B) Outline chapter 5 @Computer +Novel
+	// (B) Outline chapter 5 +Novel @Computer
 	// (C) Add cover sheets @Office +TPSReports
 }
 
@@ -94,7 +94,7 @@ func Example_with_comments() {
 	// (A) Call Mom @Phone +Family
 	// x (C) Schedule annual checkup +Health
 	// Pick up milk @GroceryStore
-	// Research self-publishing services @Computer +Novel
+	// Research self-publishing services +Novel @Computer
 	// x Download Todo.txt mobile app @Phone
 	// (A) This is a task should be due before yesterday due:2020-11-15
 }
@@ -146,7 +146,7 @@ func ExampleLoadFromPath() {
 		fmt.Println(task)
 	}
 	// Output:
-	// (B) 2013-12-01 Outline chapter 5 @Computer +Novel Level:5 private:false due:2014-02-17
+	// (B) 2013-12-01 Outline chapter 5 +Novel @Computer Level:5 private:false due:2014-02-17
 }
 
 func ExampleLoadFromString() {
